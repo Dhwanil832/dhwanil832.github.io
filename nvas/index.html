@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Visual Geometry Grounded Novel-View Acoustic Synthesis</title>
+  <meta name="description"
+    content="Project page for Visual Geometry Grounded Novel-View Acoustic Synthesis, a feed-forward visual geometry grounded framework for viewpoint-accurate binaural audio synthesis." />
+  <meta property="og:title" content="Visual Geometry Grounded Novel-View Acoustic Synthesis" />
+  <meta property="og:description"
+    content="Feed-forward framework for novel-view acoustic synthesis without explicit 3D rendering, dense point maps, or target-view images." />
+  <meta property="og:image" content="assets/hero.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:wght@500;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --paper: #ffffff;
+      --ink: #0f172a;
+      --muted: #475569;
+      --soft: #e2e8f0;
+      --accent: #0891b2;
+      --accent-2: #2563eb;
+      --accent-soft: #ecfeff;
+      --shadow: 0 20px 60px rgba(15, 23, 42, 0.10);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #e0f2fe 0, transparent 32rem), var(--bg);
+      color: var(--ink);
+      line-height: 1.65;
+    }
+
+    a {
+      color: var(--accent-2);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .wrap {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 56px 0 30px;
+      text-align: center;
+    }
+
+    .venue {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border: 1px solid #bae6fd;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.72);
+      color: #075985;
+      font-weight: 700;
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-family: "Source Serif 4", Georgia, serif;
+      font-size: clamp(34px, 6vw, 68px);
+      line-height: 1.02;
+      letter-spacing: -0.045em;
+      margin: 0 0 18px;
+    }
+
+    .subtitle {
+      max-width: 850px;
+      margin: 0 auto 20px;
+      font-size: clamp(18px, 2.2vw, 24px);
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .authors,
+    .affils {
+      max-width: 980px;
+      margin: 0 auto;
+      color: var(--muted);
+    }
+
+    .authors {
+      font-size: 17px;
+      font-weight: 600;
+    }
+
+    .affils {
+      font-size: 14px;
+      margin-top: 8px;
+    }
+
+.support-note {
+  max-width: 820px;
+  margin: 10px auto 0;
+  color: var(--muted);
+  font-size: 14px;
+  font-style: italic;
+}
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin: 28px 0 0;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--soft);
+      color: var(--ink);
+      background: var(--paper);
+      font-weight: 750;
+      box-shadow: 0 8px 22px rgba(15, 23, 42, 0.06);
+    }
+
+    .button.primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #fff;
+      border: none;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+      text-decoration: none;
+    }
+
+    .hero-card {
+      width: min(810px, 100%);
+      margin: 28px auto 52px;
+      border-radius: 28px;
+      overflow: hidden;
+      background: var(--paper);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(226, 232, 240, 0.85);
+    }
+
+    .hero-card img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    section {
+      padding: 42px 0;
+    }
+
+    .section-card {
+      background: rgba(255, 255, 255, 0.86);
+      border: 1px solid rgba(226, 232, 240, 0.95);
+      border-radius: 26px;
+      padding: clamp(24px, 4vw, 42px);
+      box-shadow: 0 12px 40px rgba(15, 23, 42, 0.055);
+    }
+
+    h2 {
+      font-family: "Source Serif 4", Georgia, serif;
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.1;
+      margin: 0 0 16px;
+      letter-spacing: -0.025em;
+    }
+
+    h3 {
+      font-size: 20px;
+      margin: 24px 0 8px;
+    }
+
+    .lead {
+      font-size: 18px;
+      color: #334155;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    .tile {
+      background: #fff;
+      border: 1px solid var(--soft);
+      border-radius: 20px;
+      padding: 20px;
+    }
+
+    .tile strong {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 6px;
+    }
+
+    .method-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .method-grid img,
+    .image-card img {
+      width: 100%;
+      border-radius: 18px;
+      border: 1px solid var(--soft);
+      background: #fff;
+    }
+
+    .caption {
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 8px;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      overflow: hidden;
+      border-radius: 16px;
+      background: #fff;
+    }
+
+    th,
+    td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--soft);
+      text-align: left;
+    }
+
+    th {
+      background: #f1f5f9;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #334155;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .highlight {
+      color: #0e7490;
+      font-weight: 800;
+    }
+
+    .results-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .metric-note {
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 10px;
+    }
+
+    .bibtex {
+      background: #0f172a;
+      color: #e2e8f0;
+      border-radius: 18px;
+      padding: 22px;
+      overflow: auto;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .footer {
+      padding: 42px 0 70px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 14px;
+    }
+
+    @media (max-width: 840px) {
+
+      .grid,
+      .method-grid,
+      .results-grid {
+        grid-template-columns: 1fr;
+      }
+
+      header {
+        padding-top: 36px;
+      }
+
+      .section-card {
+        border-radius: 20px;
+      }
+    }
+
+    section p,
+    .section-card p,
+    .tile,
+    .caption,
+    .metric-note {
+      text-align: justify;
+      text-justify: inter-word;
+    }
+
+    section p:last-child,
+    .section-card p:last-child {
+      text-align-last: left;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="wrap">
+    <div class="venue">CVPR 2026 Workshop</div>
+    <h1>Visual Geometry Grounded Novel-View Acoustic Synthesis</h1>
+    <p class="subtitle">A feed-forward framework for viewpoint-accurate binaural audio synthesis without explicit 3D
+      visual rendering, dense point maps, or target-view images.</p>
+    <p class="authors">
+      <a href="https://jaypolra.github.io/" target="_blank" rel="noopener">Jay Polra</a> ·
+      <a href="https://dhwanil832.github.io/" target="_blank" rel="noopener">Dhwanil Chauhan</a> ·
+      <a href="https://biaslab.ics.uci.edu/people-detail/V2VuanVuIEh1YW5n" target="_blank" rel="noopener">Wenjun
+        Huang</a> ·
+      <a href="https://www.pnw.edu/civs/about-us/staff/" target="_blank" rel="noopener">Kyle Toth</a> ·
+      <a href="https://orcid.org/0000-0001-7339-2912" target="_blank" rel="noopener">Xianhui Wang</a> ·
+      <a href="https://yang-ni-yn.github.io/" target="_blank" rel="noopener">Yang Ni</a>
+    </p>
+    <p class="affils">Purdue University Northwest · University of California, Irvine · CIVS · San Diego State University
+    </p>
+    <p class="support-note">
+      This work is supported by the Steel Manufacturing Simulation and Visualization Consortium (SMSVC).
+    </p>
+    <nav class="buttons" aria-label="Project links">
+      <a class="button" href="assets/poster.pdf">
+        <i class="fa-regular fa-file-pdf" aria-hidden="true"></i>
+        <span>Poster</span>
+      </a>
+
+      <a class="button " href="https://github.com/Dhwanil832/geometry-grounded-nvas">
+        <i class="fa-brands fa-github" aria-hidden="true"></i>
+        <span>Code</span>
+      </a>
+
+      <a class="button" href="https://www.researchgate.net/publication/404909561_Visual_Geometry_Grounded_Novel-View_Acoustic_Synthesis">
+        <i class="fa-solid fa-book-open" aria-hidden="true"></i>
+        <span>Preprint</span>
+      </a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <div class="hero-card">
+      <img src="assets/hero.png"
+        alt="Geometry-grounded acoustic synthesis overview showing visual viewpoints and binaural channel audio" />
+    </div>
+
+    <section id="abstract">
+      <div class="section-card">
+        <h2>Abstract</h2>
+        <p class="lead">We present a unified framework for novel-view acoustic synthesis that directly grounds spatial
+          audio generation in feed-forward visual geometry. The method synthesizes accurate and immersive binaural audio
+          in 3D spaces without requiring viewpoint images, dense point maps, or ground-truth poses for input video.</p>
+        <p>The framework combines learned visual representations and geometry from feed-forward scene encoding with
+          geometry-aware binauralization. Its Geometry-Grounded Acoustic Decoder dynamically attends to cross-modal
+          features that embed local and global geometry across audio and visual modalities. Experiments show improved
+          quality and viewpoint accuracy across NVAS benchmarks while avoiding time-consuming explicit rendering of
+          novel-view images or dense point maps.</p>
+      </div>
+    </section>
+
+    <section id="highlights">
+      <div class="grid">
+        <div class="tile"><strong>No costly photogrammetry</strong>Bypasses Structure-from-Motion, explicit dense point
+          maps, and target-view image rendering during inference.</div>
+        <div class="tile"><strong>Geometry-aware audio</strong>Uses feed-forward visual geometry as grounding for
+          listener-conditioned binaural transfer prediction.</div>
+        <div class="tile"><strong>Sparse-view robust</strong>Remains operational with sparse reference frames where
+          reconstruction-dependent pipelines can fail.</div>
+      </div>
+    </section>
+
+    <section id="method">
+      <div class="section-card method-grid">
+        <div>
+          <h2>Method</h2>
+          <p>The pipeline constructs a multimodal context from sparse reference video frames and aligned audio. A
+            multi-view geometry encoder extracts visual context and pose-aware geometry. Acoustic prototype
+            initialization encodes reference mono and binaural audio into scene-specific transfer features.</p>
+          <p>The Geometry-Grounded Acoustic Decoder queries this context with frequency-aware target-pose tokens,
+            attends over visual, geometric, and acoustic features, and predicts target-view binaural transfer fields.
+            Spectral binaural synthesis then applies the predicted transfer fields to mono audio to reconstruct
+            left-right binaural output.</p>
+        </div>
+        <figure class="image-card">
+          <img src="assets/methods.png"
+            alt="Detailed method diagram for multimodal context construction, geometry grounded acoustic decoder, and binaural audio synthesis" />
+          <figcaption class="caption">Framework overview: multimodal context construction, GGAD decoding, and spectral
+            binaural synthesis.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="results">
+      <div class="section-card results-grid">
+        <div>
+          <h2>Results</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Dataset</th>
+                <th>Params</th>
+                <th>FPS</th>
+                <th>MAG ↓</th>
+                <th>ENV ↓</th>
+                <th>LRE ↓</th>
+                <th>DPAM ↓</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>RWAVS</td>
+                <td>3.24M</td>
+                <td>189</td>
+                <td class="highlight">0.3485</td>
+                <td class="highlight">0.1424</td>
+                <td class="highlight">0.9589</td>
+                <td class="highlight">0.2705</td>
+              </tr>
+              <tr>
+                <td>Replay-NVAS</td>
+                <td>3.24M</td>
+                <td>398</td>
+                <td>0.1590</td>
+                <td class="highlight">0.0400</td>
+                <td>0.8060</td>
+                <td class="highlight">0.2240</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="metric-note">Lower is better for MAG, ENV, LRE, and DPAM. Replace or extend this table with
+            camera-ready numbers as needed.</p>
+        </div>
+        <div>
+          <h3>Key outcome</h3>
+          <p>The method improves over AV-Cloud on RWAVS while reducing reliance on reconstruction-heavy preprocessing.
+            Under stricter 50/50 train/test splits, the gains are especially visible in LRE and DPAM, indicating
+            stronger viewpoint generalization.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="Visualizations">
+      <div class="section-card">
+        <h2>Visualizations</h2>
+        <p>
+          Qualitative visualization of target-view binaural synthesis. The comparison shows the target view, ground
+          truth, our model, AV-Cloud, and AV-NeRF, along with left and right channel waveform overlays. Our model more
+          closely matches the ground-truth spectrogram and stereo waveform structure, demonstrating improved
+          viewpoint-aware spatial audio generation.
+        </p>
+        <img src="assets/results.png" alt="Poster preview"
+          style="width:100%;border-radius:18px;border:1px solid var(--soft);" />
+      </div>
+    </section>
+
+    <section id="bibtex">
+      <div class="section-card">
+        <h2>BibTeX</h2>
+        <pre class="bibtex"><code>@inproceedings{polra2026nvas,
+  title     = {Visual Geometry Grounded Novel-View Acoustic Synthesis},
+  author    = {Polra, Jay and Chauhan, Dhwanil and Huang, Wenjun and Toth, Kyle and Wang, Xianhui and Ni, Yang},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops},
+  year      = {2026}
+}</code></pre>
+      </div>
+    </section>
+  </main>
+
+
+  <footer class="footer wrap">
+    Built as a lightweight static project page inspired by the <a href="https://github.com/nerfies/nerfies.github.io"
+      target="_blank" rel="noopener">Nerfies</a>-style academic webpage format.
+  </footer>
+</body>
+
+</html>
