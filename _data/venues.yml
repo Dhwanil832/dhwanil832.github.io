@@ -2,10 +2,6 @@
   url: https://cvpr.thecvf.com/
   color: "#1565C0"
 
-"AISTech":
-  url: https://www.aist.org/aisttech
-  color: "#B71C1C"
-
 "TPAMI":
   url: https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=34
   color: "#1B5E20"
@@ -14,26 +10,67 @@
   url: https://www.aclweb.org/
   color: "#4A148C"
 
-"ICSMDI":
-  url: https://ieeexplore.ieee.org/
-  color: "#E65100"
-
-"ICSSAS":
-  url: https://ieeexplore.ieee.org/
-  color: "#E65100"
-
-"ICAIIHI":
-  url: https://ieeexplore.ieee.org/
-  color: "#E65100"
-
-"I-SMAC":
-  url: https://ieeexplore.ieee.org/
-  color: "#E65100"
-
 "SEET":
-  url: https://link.springer.com/
+  url: https://link.springer.com/book/10.1007/978-3-032-08977-9
   color: "#33691E"
 
 "Springer":
   url: https://link.springer.com/
+  color: "#33691E"
+
+"IEEE":
+  url: https://www.ieee.org/
+  color: "#E65100"
+
+
+"ICSMDI":
+  url: https://www.computer.org/csdl/proceedings/icsmdi/2023/1NsX65BtqfK
+  color: "#E65100"
+
+"ICAIIHI":
+  url: https://www.computer.org/csdl/proceedings/icaiihi/2023/1Waa5v2dS0g
+  color: "#E65100"
+
+"ICSSAS":
+  url: https://ieeexplore.ieee.org/xpl/conhome/10330805/proceeding
+  color: "#E65100"
+
+"I-SMAC":
+  url: https://ieeexplore.ieee.org/xpl/conhome/10290135/proceeding
+  color: "#E65100"
+
+"ISBM":
+  url: https://link.springer.com/book/10.1007/978-981-99-8346-9
+  color: "#33691E"
+
+"ICTIS":
+  url: https://link.springer.com/book/10.1007/978-981-97-6675-8
+  color: "#33691E"
+
+"ICTCS":
+  url: https://link.springer.com/book/10.1007/978-981-96-5754-4
+  color: "#33691E"
+
+"AISTech":
+  url: https://www.aist.org/aisttech
+  color: "#B71C1C"
+
+"WCSC":
+  url: https://link.springer.com/book/10.1007/978-981-95-0183-0
+  color: "#33691E"
+
+"icSoftComp":
+  url: https://link.springer.com/book/10.1007/978-3-032-22062-2
+  color: "#33691E"
+  
+"SEET":
+  url: https://link.springer.com/book/10.1007/978-3-032-08977-9
+  color: "#33691E"
+  
+"ICT4SD":
+  url: https://link.springer.com/book/10.1007/978-3-032-06674-9
+  color: "#33691E"
+
+"IMMI":
+  url: https://link.springer.com/journal/40192
   color: "#33691E"
