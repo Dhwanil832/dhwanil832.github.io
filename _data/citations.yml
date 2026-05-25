@@ -1,6 +1,10 @@
 metadata:
-  last_updated: '2026-05-18'
+  last_updated: '2026-05-25'
 papers:
+  rGG7kXMAAAAJ:0EnyYjriUFMC:
+    citations: 0
+    title: Visual Geometry Grounded Novel-View Acoustic Synthesis
+    year: Unknown Year
   rGG7kXMAAAAJ:2osOgNQ5qMEC:
     citations: 0
     title: 'Technological Trends and Their Impact on Society: A Comprehensive Analysis'
@@ -49,6 +53,10 @@ papers:
     citations: 0
     title: 'Ethereum Blockchain Wallets: A Kotlin-based Implementation Perspective'
     year: '2023'
+  rGG7kXMAAAAJ:hqOjcs7Dif8C:
+    citations: 0
+    title: 'A Dual-Model Approach to Industrial Safety: Computer Vision for PPE Compliance and Hazard-Zone Monitoring in Steel Production'
+    year: '2026'
   rGG7kXMAAAAJ:u-x6o8ySG0sC:
     citations: 5
     title: A novel intrusion detection system based on machine learning for internet of things (IoT) devices
