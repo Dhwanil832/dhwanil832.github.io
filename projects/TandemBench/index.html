@@ -1,0 +1,566 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TandemBench: Joint-Corruption Evaluation for Cross-Modal Retrieval</title>
+  <meta name="description" content="TandemBench is a matched marginal-and-joint corruption benchmark for image-text retrieval across 19 dual-encoder models, 16 image corruptions, 12 text perturbations, two datasets, and both retrieval directions." />
+  <meta property="og:title" content="TandemBench" />
+  <meta property="og:description" content="Matched marginal and joint corruption analysis for cross-modal retrieval." />
+  <meta property="og:image" content="assets/teaser.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --paper: #ffffff;
+      --ink: #0f172a;
+      --muted: #475569;
+      --soft: #e2e8f0;
+      --blue: #2563eb;
+      --blue-deep: #1647a8;
+      --orange: #f97316;
+      --orange-soft: #fff7ed;
+      --blue-soft: #eff6ff;
+      --shadow: 0 20px 60px rgba(15, 23, 42, 0.10);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(37, 99, 235, 0.11) 0, transparent 30rem),
+        radial-gradient(circle at top right, rgba(249, 115, 22, 0.08) 0, transparent 24rem),
+        var(--bg);
+      color: var(--ink);
+      line-height: 1.65;
+    }
+
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .wrap {
+      width: min(1160px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 58px 0 28px;
+      text-align: center;
+    }
+
+    .venue {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 13px;
+      border: 1px solid #bfdbfe;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.82);
+      color: var(--blue-deep);
+      font-weight: 800;
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
+
+    h1, h2 {
+      font-family: "Source Serif 4", Georgia, serif;
+    }
+
+    h1 {
+      font-size: clamp(38px, 6vw, 68px);
+      line-height: 1.02;
+      letter-spacing: -0.045em;
+      margin: 0 auto 18px;
+      max-width: 1080px;
+    }
+
+    .subtitle {
+      max-width: 900px;
+      margin: 0 auto;
+      font-size: clamp(18px, 2.2vw, 24px);
+      color: var(--muted);
+      line-height: 1.48;
+    }
+
+    .review-note {
+      margin: 12px auto 0;
+      color: #64748b;
+      font-size: 14px;
+      font-style: italic;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin: 28px 0 0;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--soft);
+      color: var(--ink);
+      background: var(--paper);
+      font-weight: 750;
+      box-shadow: 0 8px 22px rgba(15, 23, 42, 0.06);
+      transition: transform 160ms ease, box-shadow 160ms ease;
+    }
+
+    .button.primary {
+      background: linear-gradient(135deg, var(--blue-deep), var(--blue));
+      color: #fff;
+      border: none;
+    }
+
+    .button.release {
+      border-color: #fed7aa;
+      background: var(--orange-soft);
+      color: #9a3412;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+      text-decoration: none;
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.10);
+    }
+
+    .hero-card {
+      margin: 30px auto 38px;
+      border-radius: 26px;
+      overflow: hidden;
+      background: var(--paper);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(226, 232, 240, 0.92);
+      padding: 16px;
+    }
+
+    .hero-card img,
+    .image-card img,
+    .wide-image img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 16px;
+    }
+
+    .hero-caption,
+    .caption {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 10px 4px 0;
+    }
+
+    section { padding: 30px 0; }
+
+    .section-card {
+      background: rgba(255, 255, 255, 0.90);
+      border: 1px solid rgba(226, 232, 240, 0.96);
+      border-radius: 26px;
+      padding: clamp(24px, 4vw, 42px);
+      box-shadow: 0 12px 40px rgba(15, 23, 42, 0.055);
+    }
+
+    h2 {
+      font-size: clamp(29px, 4vw, 42px);
+      line-height: 1.1;
+      margin: 0 0 16px;
+      letter-spacing: -0.025em;
+    }
+
+    h3 {
+      font-size: 20px;
+      margin: 24px 0 8px;
+    }
+
+    .lead {
+      font-size: 18px;
+      color: #334155;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 12px;
+      margin: 30px auto 10px;
+    }
+
+    .stat {
+      min-height: 118px;
+      background: #fff;
+      border: 1px solid var(--soft);
+      border-radius: 18px;
+      padding: 18px 14px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      box-shadow: 0 6px 20px rgba(15, 23, 42, 0.04);
+    }
+
+    .stat .num {
+      font-size: 27px;
+      font-weight: 850;
+      color: var(--blue-deep);
+      line-height: 1.05;
+    }
+
+    .stat .label {
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 22px;
+    }
+
+    .tile {
+      background: #fff;
+      border: 1px solid var(--soft);
+      border-radius: 20px;
+      padding: 20px;
+    }
+
+    .tile strong {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 7px;
+    }
+
+    .tile.blue { border-top: 4px solid var(--blue); }
+    .tile.orange { border-top: 4px solid var(--orange); }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .result-layout {
+      display: grid;
+      grid-template-columns: 0.82fr 1.18fr;
+      gap: 30px;
+      align-items: start;
+    }
+
+    .image-card,
+    .wide-image {
+      margin: 0;
+      background: #fff;
+      border: 1px solid var(--soft);
+      border-radius: 20px;
+      padding: 12px;
+    }
+
+    .callout {
+      border-left: 4px solid var(--blue);
+      background: var(--blue-soft);
+      border-radius: 14px;
+      padding: 15px 18px;
+      color: #1e3a8a;
+      margin-top: 18px;
+      font-weight: 600;
+    }
+
+    .callout.orange {
+      border-left-color: var(--orange);
+      background: var(--orange-soft);
+      color: #9a3412;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--soft);
+      text-align: left;
+      vertical-align: middle;
+    }
+
+    th {
+      background: #f1f5f9;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.055em;
+      color: #334155;
+    }
+
+    tr:last-child td { border-bottom: none; }
+
+    .positive { color: #166534; font-weight: 800; }
+    .negative { color: #b91c1c; font-weight: 800; }
+    .muted { color: var(--muted); }
+
+    .pipeline {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .stage {
+      border-radius: 18px;
+      border: 1px solid var(--soft);
+      background: #fff;
+      padding: 18px;
+    }
+
+    .stage .step {
+      display: inline-flex;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      background: var(--blue-soft);
+      color: var(--blue-deep);
+      margin-bottom: 10px;
+    }
+
+    .download-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 22px;
+    }
+
+    .download-card {
+      padding: 20px;
+      border-radius: 18px;
+      background: #fff;
+      border: 1px solid var(--soft);
+    }
+
+    .download-card i { color: var(--blue); font-size: 24px; }
+    .download-card h3 { margin: 10px 0 4px; }
+
+    .footer {
+      padding: 42px 0 70px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 14px;
+    }
+
+    code.inline {
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      border-radius: 7px;
+      padding: 2px 6px;
+      font-size: 0.93em;
+    }
+
+    @media (max-width: 980px) {
+      .stats { grid-template-columns: repeat(3, 1fr); }
+      .pipeline { grid-template-columns: repeat(2, 1fr); }
+      .two-col, .result-layout { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 680px) {
+      header { padding-top: 38px; }
+      .stats, .grid-3, .pipeline, .download-row { grid-template-columns: 1fr; }
+      .section-card { border-radius: 20px; }
+      .hero-card { padding: 8px; border-radius: 18px; }
+      th, td { padding: 10px 9px; font-size: 13px; }
+      .table-wrap { overflow-x: auto; }
+    }
+  </style>
+</head>
+<body>
+  <header class="wrap">
+    <div class="venue"><i class="fa-solid fa-layer-group"></i> WACV 2027 · Datasets Track</div>
+    <h1>TandemBench: A Joint-Corruption Benchmark &amp; Analysis of Cross-Modal Retrieval</h1>
+    <p class="subtitle">Matched marginal-and-joint evaluation for image–text retrieval when visual and language inputs degrade simultaneously.</p>
+    
+    <p class="authors">
+      <a href="https://dhwanil832.github.io/" target="_blank" rel="noopener">Dhwanil Chauhan</a> ·
+      <a href="mailto:pratik.bhagtani@gmail.com" target="_blank" rel="noopener">Pratik Bhagtani</a> ·
+      <a href="mailto:sachinpatel.dit@charusat.ac.in" target="_blank" rel="noopener">Sachin Patel</a> 
+      
+      
+    </p>
+    <p class="affils">Purdue University Northwest · University of Cumberlands · Charotar University of Science and Technology
+    </p>
+
+    <nav class="buttons" aria-label="Project resources">
+      <!-- <a class="button primary" href="assets/paper.pdf"><i class="fa-regular fa-file-pdf"></i><span>Paper</span></a> -->
+      <!-- <a class="button" href="assets/supplement.pdf"><i class="fa-regular fa-file-pdf"></i><span>Supplement</span></a> -->
+      <!-- <a class="button release" href="assets/tandembench_release.zip"><i class="fa-solid fa-box-archive"></i><span>Release</span></a> -->
+    </nav>
+
+    <div class="stats" aria-label="Benchmark statistics">
+      <div class="stat"><div class="num">19</div><div class="label">dual-encoder models</div></div>
+      <div class="stat"><div class="num">16</div><div class="label">image corruptions</div></div>
+      <div class="stat"><div class="num">12</div><div class="label">text perturbations</div></div>
+      <div class="stat"><div class="num">5</div><div class="label">ordinal severity levels</div></div>
+      <div class="stat"><div class="num">2×2</div><div class="label">datasets × retrieval directions</div></div>
+      <div class="stat"><div class="num">83,754</div><div class="label">evaluation records</div></div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="hero-card">
+      <img src="assets/teaser.png" alt="TandemBench overview showing clean and corrupted inputs, three matched evaluation paths, and additive composition results across Recall at 1, 5, and 10." />
+      <p class="hero-caption">The same image–text sample is evaluated along image-only, text-only, and joint-corruption paths. The benchmark then asks both how much single-modality evaluation misses and whether the two marginal losses reconstruct the joint effect.</p>
+    </div>
+
+    <section id="abstract">
+      <div class="section-card">
+        <h2>Abstract</h2>
+        <p class="lead">Vision-language retrieval systems may encounter degradation in both images and text simultaneously, yet robustness is commonly evaluated one modality at a time. This leaves a basic question unresolved: can joint degradation be inferred from the corresponding image-only and text-only effects?</p>
+        <p>We introduce TandemBench, a benchmark for matched marginal and joint corruption that evaluates 19 dual-encoder retrieval models across 16 image perturbations, 12 text perturbations, five ordinal severity levels, two datasets, and both retrieval directions. We separate perturbation applicability, execution, and marginal difficulty, and use an eight-operator execution-screened subset containing 47,360 complete conditions for primary analysis.</p>
+        <p>Joint degradation exceeds the larger single-modality loss in 95.15% of these conditions, by 5.07 Recall@1 points on average; the same qualitative result holds across the full twelve-operator suite. More importantly, the sum of the two marginal losses reconstructs joint degradation closely under mild corruption, but its predictive accuracy declines as degradation strengthens and its error becomes dependent on retrieval cutoff and model. Realized-damage matching shows that these conclusions are not an artifact of pairing operators by a common severity index. Recovery experiments further reveal strong dependence on retrieval direction, corruption, and model.</p>
+      </div>
+    </section>
+
+    <section id="question">
+      <div class="grid-3">
+        <div class="tile blue">
+          <strong>Matched marginal–joint design</strong>
+          Every joint condition is paired with its image-only and text-only counterparts on the same samples and clean baseline, producing directly comparable <em>δ₁, δ₂, δ₃</em> measurements.
+        </div>
+        <div class="tile orange">
+          <strong>Execution-aware perturbations</strong>
+          Applicability, fire rate, and marginal retrieval difficulty are measured separately. All 12 text operators stay in the benchmark; 8 broadly executing operators form the primary analysis subset.
+        </div>
+        <div class="tile blue">
+          <strong>Composition, not just degradation</strong>
+          TandemBench distinguishes degradation missed by either marginal from the stronger question of whether <em>δ₁ + δ₂</em> reconstructs observed joint degradation.
+        </div>
+      </div>
+    </section>
+
+    <section id="benchmark">
+      <div class="section-card two-col">
+        <div>
+          <h2>Benchmark protocol</h2>
+          <p>Every corruption condition is evaluated along three matched paths. Path 1 corrupts the image only, Path 2 corrupts the caption only, and Path 3 corrupts both modalities on the same sample. All three effects are measured as drops from the same clean baseline.</p>
+          <p>Image and text corruptions are paired using a common ordinal severity index from 1 to 5. The index orders intervention strength within an operator; it does not imply equal physical, linguistic, or realized retrieval damage across different operators.</p>
+          <div class="callout">Primary analysis: 47,360 complete matched conditions from the eight-operator execution-screened text subset.</div>
+        </div>
+        <figure class="image-card">
+          <img src="assets/perturbation_schedule.png" alt="Example TandemBench motion-blur and keyboard-typo corruption schedules over five severity levels." />
+          <figcaption class="caption">Example visual and textual corruption schedules across the five ordinal severity levels.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="corruptions">
+      <div class="section-card">
+        <h2>Corruption suite</h2>
+        <p class="lead">Sixteen visual corruptions and twelve text perturbations provide controlled interventions across both sides of retrieval.</p>
+        <figure class="wide-image">
+          <img src="assets/corruption_suite.png" alt="Qualitative overview of the TandemBench image and text corruption suite at severity 5." />
+          <figcaption class="caption">Severity-5 qualitative gallery from the supplement. The image panel shows all 16 image corruptions; the text panel shows outputs from all 12 text operators.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- <section id="screening">
+      <div class="section-card two-col">
+        <figure class="image-card">
+          <img src="assets/fire_rates.png" alt="Fire rate across severity for broadly applicable and structure-limited text perturbations." />
+          <figcaption class="caption">Realized text-perturbation fire rate across severity. Broadly applicable operators increase strongly with requested severity, while structure-dependent operators remain bounded by caption structure.</figcaption>
+        </figure>
+        <div>
+          <h2>Execution before difficulty</h2>
+          <p>A requested perturbation may be structurally inapplicable to a short caption or may fail to change it. TandemBench therefore separates three quantities:</p>
+          <div class="tile"><strong>Applicability</strong>Does the required linguistic structure exist in the caption?</div>
+          <div class="tile"><strong>Fire rate</strong>Did the requested transformation actually modify the input?</div>
+          <div class="tile"><strong>Marginal difficulty</strong>How much retrieval performance changed after the perturbation?</div>
+          <div class="callout orange">Damage is treated as benchmark difficulty, not as a validity criterion. The seven-operator high-damage set is reported only as a secondary challenge subset.</div>
+        </div>
+      </div>
+    </section> -->
+
+    <section id="results">
+      <div class="section-card result-layout">
+        <figure class="image-card">
+          <img src="assets/additivity_panel.png" alt="Additive prediction versus observed joint degradation for Recall at 1, 5, and 10 at severities 1, 3, and 5." />
+          <figcaption class="caption">Additive prediction versus observed joint degradation. Agreement is strong under mild corruption, while higher-severity departures depend on retrieval cutoff.</figcaption>
+        </figure>
+        <div>
+          <h2>What TandemBench reveals</h2>
+          <div class="grid-3">
+            <div class="tile blue"><strong>95.15%</strong>of primary conditions have joint degradation above the larger single-modality loss.</div>
+            <div class="tile orange"><strong>+5.07 pp</strong>mean Recall@1 degradation missed by using only the worse marginal.</div>
+            <div class="tile blue"><strong>91.84%</strong>exceedance still holds across the full twelve-operator suite, with +3.79 pp mean excess.</div>
+          </div>
+          <h3>Marginals are informative, but not universally additive</h3>
+          <p>At Recall@1 severity 1, the marginal losses sum to 4.96 points versus 5.11 observed, with bias +0.15 and condition-level R² = 0.968. As corruption strengthens, condition-level predictability declines across retrieval cutoffs.</p>
+          <p>The direction of the additive error is metric-dependent at severity 5: Recall@1 is −3.46 points below the additive estimate, Recall@5 is nearly additive at +0.11, and Recall@10 is +1.34 above the sum. The high-severity Recall@1 pattern is therefore not a universal property of joint corruption.</p>
+          <div class="callout">Realized-damage matching gives the same qualitative conclusion: with |δ₁ − δ₂| ≤ 2 Recall@1 points, 11,855 conditions remain and exceedance is 95.39% with +4.44 pp mean excess.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="recovery">
+      <div class="section-card">
+        <h2>Recovery under joint corruption</h2>
+        <p class="lead">Recovery is treated as a downstream stress test rather than an adaptation leaderboard. Coverage differs by method, so effects should be read within each method against its own no-adaptation control.</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Method</th><th>Type</th><th>I2T ΔR@1</th><th>T2I ΔR@1</th><th>Coverage</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Tandem-Aug</strong></td><td>Study procedure</td><td class="positive">+0.83</td><td class="positive">+1.65</td><td>7/7</td></tr>
+              <tr><td><strong>Tandem-Align</strong></td><td>Study procedure</td><td class="negative">−13.28</td><td class="negative">−12.70</td><td>5/7</td></tr>
+              <tr><td><strong>QueryExpansion</strong></td><td>Prior method</td><td class="positive">+3.40</td><td class="negative">−8.72</td><td>7/7</td></tr>
+              <tr><td><strong>TCR</strong></td><td>Prior method</td><td class="positive">+4.73</td><td>−0.03</td><td>10 checkpoints</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="caption">MS-COCO Recall@1 change under joint corruption. The stress test exposes strong dependence on retrieval direction, corruption, and model family.</p>
+      </div>
+    </section>
+
+    <section id="release">
+      <div class="section-card">
+        <h2>Reproducible release</h2>
+        <p>The release is organized as a four-stage pipeline. The complete evaluation records are included, so reproducing paper tables does not require rerunning the neural models.</p>
+        <div class="pipeline">
+          <div class="stage"><div class="step">1</div><strong>Data generation</strong><p class="muted">Generate image corruptions and perturbed captions.</p></div>
+          <div class="stage"><div class="step">2</div><strong>Evaluation</strong><p class="muted">Compute Recall@1/5/10 across models and matched conditions.</p></div>
+          <div class="stage"><div class="step">3</div><strong>Recovery</strong><p class="muted">Run adaptation and input-restoration stress tests.</p></div>
+          <div class="stage"><div class="step">4</div><strong>Analysis</strong><p class="muted">Regenerate reported tables and audit claims from released records.</p></div>
+        </div>
+        <!-- <div class="callout">Analysis-only reproduction: <code class="inline">python paper_tables.py</code> regenerates the reported tables, and <code class="inline">python audit_claims.py</code> checks the reported values against the release.</div> -->
+
+        <!-- <div class="download-row">
+          <a class="download-card" href="assets/paper.pdf"><i class="fa-regular fa-file-pdf"></i><h3>Main paper</h3><span class="muted">Current WACV submission PDF</span></a>
+          <a class="download-card" href="assets/supplement.pdf"><i class="fa-regular fa-file-pdf"></i><h3>Supplement</h3><span class="muted">Extended analyses and release details</span></a>
+          <a class="download-card" href="assets/tandembench_release.zip"><i class="fa-solid fa-box-archive"></i><h3>Release archive</h3><span class="muted">Code, records, tables, and reproducibility scripts</span></a>
+        </div> -->
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer wrap">
+    TandemBench · Anonymous WACV 2027 Datasets Track review page. 
+
+</body>
+</html>

@@ -9,12 +9,12 @@ ninja.data = [{
     handler: () => {
       window.location.href = "/";
     },
-  },{id: "nav-publications",
-          title: "publications",
-          description: "Complete list of publications in reverse chronological order.",
+  },{id: "nav-research",
+          title: "research",
+          description: "Selected research on environment understanding, multimodal reasoning, robustness, and agentic decision-making.",
           section: "Navigation",
           handler: () => {
-            window.location.href = "/publications/";
+            window.location.href = "/projects/";
           },
         },{id: "nav-news",
           title: "news",
@@ -23,16 +23,16 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/news/";
           },
-        },{id: "nav-projects",
-          title: "projects",
-          description: "Research projects and demos.",
+        },{id: "nav-publications",
+          title: "publications",
+          description: "Complete list of publications in reverse chronological order.",
           section: "Navigation",
           handler: () => {
-            window.location.href = "/projects/";
+            window.location.href = "/publications/";
           },
         },{id: "nav-cv",
           title: "CV",
-          description: "PhD application CV — Dhwanil R. Chauhan. Graduate Researcher at CIVS, Purdue University Northwest. Multimodal AI · Audio-Visual Learning · Multi-Agent Systems · Industrial AI Safety.",
+          description: "PhD application CV — Dhwanil R. Chauhan. Graduate Researcher at CIVS, Purdue University Northwest. Agentic AI · Multimodal Reasoning · Embodied AI · Robustness &amp; Evaluation.",
           section: "Navigation",
           handler: () => {
             window.location.href = "/cv/";
@@ -40,29 +40,34 @@ ninja.data = [{
         },{id: "news-our-paper-development-of-trialing-image-detection-for-a-melt-shop-safety-tool-has-been-accepted-at-aistech-2026-multi-camera-spatial-reasoning-system-for-real-time-dynamic-safety-zone-reconfiguration-in-active-industrial-environments",
           title: 'Our paper Development of Trialing Image Detection for a Melt Shop Safety Tool...',
           description: "",
-          section: "News",},{id: "news-our-paper-visual-geometry-grounded-novel-view-acoustic-synthesis-has-been-accepted-at-the-cvpr-workshop-2026-first-unified-framework-for-novel-view-acoustic-synthesis-bypassing-explicit-3d-reconstruction-via-feed-forward-visual-geometry-grounding",
+          section: "News",},{id: "news-our-paper-visual-geometry-grounded-novel-view-acoustic-synthesis-has-been-accepted-at-the-cvpr-2026-mmfm5-workshop-first-unified-framework-for-novel-view-acoustic-synthesis-bypassing-explicit-3d-reconstruction-via-feed-forward-visual-geometry-grounding",
           title: 'Our paper Visual Geometry Grounded Novel-View Acoustic Synthesis has been accepted at the...',
           description: "",
-          section: "News",},{id: "projects-novel-view-acoustic-synthesis",
-          title: 'Novel-View Acoustic Synthesis',
-          description: "Feed-forward framework for viewpoint-accurate binaural audio synthesis without 3D reconstruction",
+          section: "News",},{id: "projects-visual-geometry-grounded-novel-view-acoustic-synthesis",
+          title: 'Visual Geometry Grounded Novel-View Acoustic Synthesis',
+          description: "Geometry-grounded audio-visual reasoning without explicit 3D reconstruction",
           section: "Projects",handler: () => {
               window.location.href = "/projects/1_project/";
             },},{id: "projects-dynamic-safety-zone-monitoring",
           title: 'Dynamic Safety Zone Monitoring',
-          description: "Multi-camera spatial reasoning for real-time hazard boundary reconfiguration in active melt shop environments",
+          description: "Multi-camera spatial reasoning for changing industrial environments",
           section: "Projects",handler: () => {
               window.location.href = "/projects/2_project/";
             },},{id: "projects-ai-assisted-accident-investigation",
           title: 'AI-Assisted Accident Investigation',
-          description: "Conversational AI system for structured industrial safety incident reporting — from monolithic pipeline to multi-agent architecture",
+          description: "Conversational AI for structured industrial safety incident reporting and targeted information gathering",
           section: "Projects",handler: () => {
               window.location.href = "/projects/3_project/";
-            },},{id: "projects-vlm-robustness-benchmark",
-          title: 'VLM Robustness Benchmark',
-          description: "Systematic evaluation of 20 vision-language models under simultaneous visual and linguistic degradation",
+            },},{id: "projects-tandembench",
+          title: 'TandemBench',
+          description: "Joint-corruption benchmark for cross-modal retrieval under simultaneous image and text degradation",
           section: "Projects",handler: () => {
               window.location.href = "/projects/4_project/";
+            },},{id: "projects-progressive-evidence-driven-root-cause-analysis",
+          title: 'Progressive Evidence-Driven Root Cause Analysis',
+          description: "AI-assisted industrial investigation with evolving evidence, competing causal explanations, and justified revision",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/5_project/";
             },},{
         id: 'social-cv',
         title: 'CV',
