@@ -1,19 +1,23 @@
 ---
 layout: page
 title: AI-Assisted Accident Investigation
-description: Conversational AI system for structured industrial safety incident reporting — from monolithic pipeline to multi-agent architecture
+description: Conversational AI for structured industrial safety incident reporting and targeted information gathering
 img: assets/img/aiaai.png
-importance: 3
+importance: 5
 category: research
 related_publications: true
 ---
 
-Industrial safety incident reporting at steel manufacturing facilities relies on manual form completion by on-shift supervisors immediately after high-stress events — producing inconsistent, incomplete records across incident types spanning crane failures, pinch points, and equipment damage. The cognitive load and time pressure of the moment work directly against the quality of documentation.
+Industrial safety incident reporting at steel manufacturing facilities often begins under time pressure, with incomplete information and inconsistent documentation across incident types. Static forms can capture required fields, but they do little to help determine what important information is still missing.
 
-**Version 1 (AISTech 2025)** replaced this manual process with a conversational AI system that guides supervisors through structured incident capture via natural dialogue. The system maintains context across multi-turn exchanges to extract incident classification, risk assessment, root cause analysis, and corrective action recommendations. My contribution was designing and implementing the conversational AI backend — a Django pipeline handling context retention, dialogue state management, and action sequencing. My co-author built the interface, session management, and administrative dashboard.
+**Our system** replaces static incident reporting with a conversational AI workflow that guides supervisors through structured incident capture using natural dialogue. The system retains context across multi-turn exchanges, extracts incident information, tracks what has already been established, and asks targeted follow-up questions when important information is missing.
 
-**Version 2 (targeting ACL)** evolves the architecture from a monolithic pipeline to a modular multi-agent system. Separate agents handle dialogue state, context retention, domain reasoning, and action sequencing — enabling more robust, scalable incident response. V2 also introduces an on-premise LLM evaluation benchmark for industrial agentic deployment, addressing the reliability requirements of safety-critical systems.
+**My contribution** was designing and implementing the conversational AI backend, including context retention, dialogue-state management, structured information flow, and action sequencing across the investigation.
 
-Both systems are developed in partnership with the Steel Manufacturing Simulation and Visualization Consortium (SMSVC).
+The broader research question behind this work was not simply whether an LLM could generate a report, but whether an AI system could recognize when the available information was insufficient and determine what to ask next.
+
+This project became an important step toward my current work on **progressive evidence-driven root cause analysis**, where the investigation moves beyond information collection toward maintaining competing causal explanations, identifying consequential evidence gaps, seeking distinguishing evidence, and revising conclusions as new information becomes available.
+
+The work was presented at **AISTech 2025**.
 
 {% cite pu2025aiaai %}

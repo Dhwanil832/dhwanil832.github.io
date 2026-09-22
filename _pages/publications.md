@@ -4,7 +4,7 @@ permalink: /publications/
 title: publications
 description: Complete list of publications in reverse chronological order.
 nav: true
-nav_order: 2
+nav_order: 3
 ---
 
 {% include bib_search.liquid %}

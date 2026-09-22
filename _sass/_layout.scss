@@ -33,6 +33,17 @@ body.sticky-bottom-footer {
   max-width: v.$max-content-width;
 }
 
+// Keep long-form copy visually consistent across the site.
+.post article p {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+// Contact/profile details are labels rather than prose and should stay left aligned.
+.post article .profile .more-info p {
+  text-align: left;
+}
+
 // Profile
 .profile {
   img {
@@ -56,3 +67,4 @@ body.sticky-bottom-footer {
 *****************************************************************************/
 
 // TODO: redefine projects layout.
+

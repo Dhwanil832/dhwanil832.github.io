@@ -12,8 +12,8 @@ profile:
     <p>chauha56@purdue.edu</p>
     <p>Hammond, Indiana</p>
 
-selected_papers: true # includes a list of papers marked as "selected={true}"
-social: true # includes social icons at the bottom of the page
+selected_papers: true
+social: true
 
 announcements:
   enabled: true
@@ -21,20 +21,15 @@ announcements:
   limit: 5
 
 latest_posts:
-  enabled: false # blog disabled
+  enabled: false
 ---
 
-I am a graduate researcher at the [Center for Innovation Through Visualization and Simulation (CIVS)](https://civs.pnw.edu/) at Purdue University Northwest, advised by [Yang Ni](https://www.pnw.edu/person/yang-ni/). My research sits at the intersection of multimodal AI, audio-visual learning, and multi-agent systems, with a focus on building intelligent systems that can **perceive, reason, and act in real-world environments**.
+I am a graduate researcher at the [Center for Innovation Through Visualization and Simulation (CIVS)](https://civs.pnw.edu/) at Purdue University Northwest, advised by [Yang Ni](https://www.pnw.edu/person/yang-ni/). **With my research, I want to understand: How does an agent know enough about its world to know what to do next?** This leads me to study intelligent agents that must make sense of complex environments from multimodal, incomplete, and sometimes unreliable information, retain the context that matters, recognize when important information is missing, and decide whether to seek more information or act.
 
-My work is grounded in an active industrial research partnership through the Steel Manufacturing Simulation and Visualization Consortium (SMSVC), where I develop AI systems that address real safety and operational challenges in manufacturing environments. This applied context shapes how I think about research, reliability, deployment constraints, and robustness are not afterthoughts but design requirements.
+My current work approaches different parts of this problem. I have worked on geometry-grounded audio-visual reasoning, multi-camera spatial understanding for industrial safety, robustness of vision-language retrieval under joint corruption, and conversational systems that identify missing information and ask targeted follow-up questions. My current work extends that last direction toward progressive evidence-driven root cause analysis: maintaining competing causal explanations, identifying consequential information gaps, seeking distinguishing evidence, and revising conclusions as new information arrives. Much of this work grows out of real industrial environments through CIVS and the Steel Manufacturing Simulation and Visualization Consortium, where information is distributed across cameras, language, sensors, and prior context, and reliability is a requirement rather than an afterthought.
 
-**Current research threads:**
+[**Explore my research →**](/projects/)
 
-- **Audio-visual spatial reasoning** — I contributed to a novel feed-forward framework for novel-view acoustic synthesis that bypasses explicit 3D reconstruction, presented at CVPR Workshop 2026.
-- **Industrial AI safety** — I have built and deployed conversational AI systems for safety incident management and multi-camera spatial reasoning systems for dynamic hazard detection in active melt shop environments (AISTech 2025, 2026).
-- **VLM robustness** — I am leading a benchmark evaluating 20 vision-language models under simultaneous visual and linguistic degradation conditions, targeting IEEE TPAMI / IJCV.
-- **Multi-agent agentic systems** — I am rebuilding our industrial safety AI from a monolithic pipeline into a modular multi-agent architecture, targeting ACL.
+I am applying to PhD programs for **Fall 2027** to study how intelligent agents can build and maintain task-relevant understanding of complex environments, reason about what they know and what they still need to know, and use that understanding for information seeking, planning, and action.
 
-Before Purdue, I completed my undergraduate studies at Charotar University of Science and Technology (CHARUSAT), India, where I published across a range of ML domains, security, medical imaging, and natural language, building a foundation in research process before finding the problems that would define my direction.
-
-I am applying to PhD programs for Fall 2027, seeking to work on multimodal agentic systems that are robust, grounded, and deployable in high-stakes real-world settings. If our work overlaps, I would love to connect.
+<small>Before Purdue, I completed my undergraduate studies at Charotar University of Science and Technology (CHARUSAT), India, where I worked across several areas of machine learning and developed my foundations in research.</small>

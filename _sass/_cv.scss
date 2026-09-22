@@ -83,19 +83,6 @@ div.container-links {
   margin-bottom: 0.5rem;
 }
 
-.cv .date-column .badge {
-  display: inline-flex;
-  justify-content: center;
-  min-width: 7.75rem !important;
-  max-width: 100%;
-  white-space: nowrap;
-}
-
-@media (min-width: 768px) {
-  .cv .cv-entry-content {
-    padding-left: 1.5rem;
-  }
-}
 
 /*****************************
  * CV MAP styles
@@ -233,3 +220,73 @@ ul.timeline li::before {
      color: var(--global-text-color);
 }
 */
+
+/*****************************
+ * CV responsive entry layout
+ *****************************/
+
+.cv .cv-entry-row {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.cv .date-column {
+  flex: 0 0 145px;
+  max-width: 145px;
+  padding: 0 0.9rem 0 0;
+  text-align: left;
+}
+
+.cv .date-column .table-cv {
+  width: 100%;
+}
+
+.cv .date-column .badge {
+  display: inline-flex;
+  justify-content: center;
+  min-width: 7.5rem !important;
+  max-width: 100%;
+  white-space: nowrap;
+}
+
+.cv p.location {
+  margin: 0.35rem 0 0;
+  font-size: 0.72rem;
+  line-height: 1.35;
+  text-align: left !important;
+  text-justify: auto;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+.cv .cv-entry-content {
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: none;
+  padding-left: 1.15rem;
+  margin-top: 0 !important;
+}
+
+@media (max-width: 767.98px) {
+  .cv .cv-entry-row {
+    flex-wrap: wrap;
+  }
+
+  .cv .date-column,
+  .cv .cv-entry-content {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .cv .date-column {
+    padding-right: 0;
+    margin-bottom: 0.65rem;
+  }
+
+  .cv .cv-entry-content {
+    padding-left: 0;
+  }
+}

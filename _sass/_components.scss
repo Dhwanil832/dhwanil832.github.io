@@ -172,6 +172,82 @@ ul.task-list input[type="checkbox"] {
   }
 }
 
+
+// Research page refinements
+.research-page-copy {
+  p {
+    text-align: justify;
+    text-justify: inter-word;
+  }
+}
+
+.research-grid {
+  max-width: 760px;
+  margin: 0 auto 2.25rem;
+
+  > .col {
+    padding: 0.65rem;
+  }
+
+  > .col {
+    display: flex;
+  }
+
+  > .col > a {
+    display: flex;
+    width: 100%;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100% !important;
+  }
+
+  .card-img-top {
+    height: 180px;
+    object-fit: contain;
+    background: var(--global-bg-color);
+  }
+
+  .card-body {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    padding: 1rem 1.05rem 1.1rem;
+  }
+
+  .card-title {
+    margin-bottom: 0.65rem;
+    font-size: 1.4rem;
+    line-height: 1.18;
+  }
+
+  .card-text {
+    margin-bottom: 0;
+    font-size: 0.94rem;
+    line-height: 1.5;
+    text-align: justify;
+    text-justify: inter-word;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .research-grid {
+    max-width: 540px;
+
+    > .col {
+      padding: 0.5rem;
+    }
+
+    .card-img-top {
+      height: auto;
+      max-height: 230px;
+    }
+  }
+}
+
 // Repositories
 
 @media (min-width: 768px) {

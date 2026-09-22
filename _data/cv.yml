@@ -1,15 +1,14 @@
 cv:
   name: Dhwanil R. Chauhan
-  label: Graduate Researcher · Multimodal AI & Agentic Systems
+  label: Graduate Researcher · Intelligent Agents & Multimodal Reasoning
   email: chauha56@purdue.edu
   location: Hammond, IN
   image: ""
   summary: >
     Graduate researcher at the Center for Innovation Through Visualization and Simulation (CIVS),
-    Purdue University Northwest. My research focuses on multimodal AI, audio-visual learning,
-    and multi-agent systems — building intelligent systems that perceive, reason, and act in
-    real-world industrial environments. Published at CVPR Workshop 2026 and AISTech 2025/2026.
-    Two papers in preparation targeting IEEE TPAMI and ACL.
+    Purdue University Northwest. I study intelligent agents that operate in complex environments
+    with multimodal, incomplete, and unreliable information. My work spans environment understanding,
+    multimodal robustness, interactive information gathering, and agentic decision-making.
 
   social_networks:
     - network: GitHub
@@ -71,23 +70,15 @@ cv:
           and dynamic action sequencing. Contribution: designed and implemented the conversational AI
           backend — monolithic Django pipeline handling context retention, dialogue state, and action sequencing.
 
-      - title: "VLM Robustness Benchmark Under Simultaneous Multimodal Degradation"
+      - title: "TandemBench: Evaluating Dual-Encoder Retrieval Under Joint Image-Text Corruption"
         authors:
           - Dhwanil Chauhan
-        publisher: "In Preparation — Targeting IEEE TPAMI / IJCV"
+          - and collaborators
+        publisher: "Submitted to WACV 2027 Round 2"
         releaseDate: 2026
         summary: >
-          Lead researcher. Systematic evaluation of 20 vision-language models under controlled simultaneous
-          visual and linguistic corruption conditions; novel text corruption module and structured evaluation pipeline.
-
-      - title: "AI-Assisted Accident Investigation V2: Multi-Agent Architecture Benchmark"
-        authors:
-          - Dhwanil Chauhan
-        publisher: "In Preparation — Targeting ACL"
-        releaseDate: 2026
-        summary: >
-          Architectural evolution from monolithic pipeline to modular multi-agent system; on-premise LLM
-          evaluation benchmark for industrial agentic deployment.
+          Lead researcher. Benchmark of 19 dual-encoder retrieval models under joint image-text corruption
+          across MS-COCO and Flickr30k, with 83,754 evaluations and analysis of nine test-time adaptation methods.
 
     Experience:
       - company: Center for Innovation Through Visualization and Simulation (CIVS)
@@ -99,7 +90,7 @@ cv:
           Research at the intersection of multimodal AI and industrial safety, in partnership with
           the Steel Manufacturing Simulation and Visualization Consortium (SMSVC).
         highlights:
-          - Built a conversational AI system guiding supervisors through structured incident capture via natural dialogue, replacing fragmented manual safety reporting across incident types spanning crane failures, pinch points, and equipment damage. (AISTech 2025; V2 targeting ACL)
+          - Built a conversational AI system guiding supervisors through structured incident capture via natural dialogue, replacing fragmented manual safety reporting across incident types spanning crane failures, pinch points, and equipment damage. (AISTech 2025)
           - Developed a multi-camera spatial reasoning system dynamically redefining safety zone boundaries from live equipment positions, enabling proactive hazard detection before incidents occur. (AISTech 2026)
           - Contributed core architectural components of a feed-forward framework synthesizing geometrically accurate binaural audio from standard video for industrial safety simulation. (CVPR Workshop 2026)
 
@@ -124,7 +115,7 @@ cv:
         score: "GPA: 3.84"
         highlights:
           - "Thesis track under Prof. Yang Ni"
-          - "Research focus: Multimodal AI, Audio-Visual Learning, Multi-Agent Systems"
+          - "Research focus: Intelligent Agents, Multimodal Reasoning, Environment Understanding"
 
       - institution: Charotar University of Science and Technology (CHARUSAT)
         location: Gujarat, India
@@ -142,7 +133,7 @@ cv:
       - name: Research Areas
         level: 
         icon: fa-solid fa-brain
-        keywords: "Multimodal AI, Vision-Language Models, Audio-Visual Learning, Multi-Agent Systems, Industrial AI Safety, Agentic Pipelines, Robustness Evaluation"
+        keywords: "Intelligent Agents, Multimodal Reasoning, Environment Understanding, Active Information Seeking, Vision-Language Models, Robustness Evaluation"
 
       - name: Frameworks & Tools
         level: 

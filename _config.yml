@@ -6,13 +6,12 @@ title: blank # the website title (if blank, full name will be used instead)
 first_name: Dhwanil
 middle_name: R.
 last_name: Chauhan
-contact_note: >
-  Best way to reach me is email.
+contact_note: ""
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
-  Multimodal AI researcher at Purdue University Northwest. CVPR Workshop 2026. Audio-visual learning · Multi-agent systems · Industrial AI safety.
+  Researcher studying intelligent agents that reason over multimodal environments, identify missing or unreliable information, and decide what to do next.
 footer_text: >
   Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
-keywords: multimodal AI, audio-visual learning, multi-agent systems, industrial AI safety, vision-language models, agentic systems, VLM robustness, Purdue University Northwest, CVPR, AISTech # add your own keywords or leave empty
+keywords: intelligent agents, multimodal reasoning, agentic AI, environment understanding, active information seeking, vision-language models, robustness, Purdue University Northwest
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
 icon: ✨ # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
 
@@ -90,7 +89,7 @@ bing_site_verification: # out your bing-site-verification ID (Bing Webmaster)
 # -----------------------------------------------------------------------------
 
 blog_name: Dhwanil Chauhan # blog_name will be displayed in your blog page
-blog_description: Research notes on multimodal AI and agentic systems
+blog_description: Research notes on intelligent agents, multimodal reasoning, and real-world AI
 permalink: /blog/:year/:title/
 lsi: false # produce an index for related posts
 
@@ -190,6 +189,7 @@ exclude:
   - _pages/about_einstein.md
   - purgecss.config.js
   - README.md
+  - assets/jupyter/blog.ipynb
   - readme_preview/
   - vendor
 keep_files:
